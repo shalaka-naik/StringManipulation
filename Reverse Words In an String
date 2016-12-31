@@ -1,0 +1,45 @@
+import java.util.Arrays;
+
+
+public class TwoPointers1 {
+
+	private String s = "I have a blue dog";
+	private char[] charArray = s.toCharArray();
+	public void reverseString()
+	{
+		int k = 0,i=0;
+		for(i=0; i<charArray.length; i++)
+		{
+			if(charArray[i] == ' ')
+				{
+					reverse(charArray,k,i-1);
+					k = i+1;
+				}
+		}
+		reverse(charArray,k,i-1);
+		reverse(charArray,0,i-1);
+	}
+	
+	public void reverse(char[] array, int fletter, int lletter)
+	{
+		char temp;
+		while(fletter<lletter)
+		{
+			temp = array[fletter];
+			array[fletter] = array[lletter];
+			array[lletter] = temp;
+			fletter++;
+			lletter--;
+		}
+		
+	}
+	
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+			TwoPointers1 tp = new TwoPointers1();
+			tp.reverseString();
+			System.out.println(Arrays.toString(tp.charArray));
+			
+	}
+
+}
