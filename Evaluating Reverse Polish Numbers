@@ -1,0 +1,86 @@
+import java.util.Arrays;
+
+public class EvaluateReversePolishNot2 {
+
+	private String[] charArray = {"2","1","+","3","*"};
+		
+	public String result()
+	{
+		stack s = new stack();
+		int res;
+		String op = "+-/*";
+		
+		for(String t:charArray)
+		{
+			
+			if(!op.contains(t))
+			{
+				//System.out.println(Character.getNumericValue(charArray[i])+Character.getNumericValue(charArray[i])+":"+i);
+				s.push(t);
+			}
+		
+			else
+			{
+				System.out.println("Before popping"+Arrays.toString(s.intArray));
+				System.out.println("Top"+(s.top));
+				int c1 = Integer.parseInt(s.pop());
+				int c2 = Integer.parseInt(s.pop());
+				System.out.println("After popping"+Arrays.toString(s.intArray));
+				System.out.println("Top"+(s.top));
+				
+				
+				switch(t)
+				{
+				case "+": 
+					s.push(String.valueOf(c1+c2));
+					break;
+				case "*": 
+					s.push(String.valueOf(c1*c2));
+					break;
+				case "/": 
+					s.push(String.valueOf(c1/c2));
+					break;
+				case "-": 
+					s.push(String.valueOf(c1+c2));
+					break;
+				}
+			}
+		
+		}
+		
+		
+		return (s.intArray[0]);
+
+	}
+	
+	
+	
+	public static void main(String[] args) {
+		
+	 	EvaluateReversePolishNot2 E1 = new EvaluateReversePolishNot2();
+		
+		String res = E1.result();
+		System.out.println("result = "+res);
+
+	}
+
+}
+
+class stack
+{
+	String[] intArray = new String[100];
+	int top = -1;
+	
+	void push(String res)	
+	{
+		intArray[++top] = res;
+	}
+	
+	String pop()
+	{
+		return intArray[top--];
+	}
+	
+}
+
+
